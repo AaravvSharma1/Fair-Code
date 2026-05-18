@@ -1588,6 +1588,7 @@
       <ul class="nav-dropdown">
         <li><a href="#explainer-proxy">01 — Proxy Variables</a></li>
         <li><a href="#explainer-sampling">02 — Sampling Bias</a></li>
+        <li><a href="#explainer-shap">03 — SHAP Values</a></li>
       </ul>
     </li>
     <li><a href="#impact">Impact</a></li>
@@ -1615,6 +1616,7 @@
     <span class="mobile-section-label">Explainers</span>
     <a href="#explainer-proxy" class="mobile-link mobile-sub">01 — Proxy Variables</a>
     <a href="#explainer-sampling" class="mobile-link mobile-sub">02 — Sampling Bias</a>
+    <a href="#explainer-shap" class="mobile-link mobile-sub">03 — SHAP Values</a>
     <a href="#methodology" class="mobile-link">Method</a>
     <a href="#impact" class="mobile-link">Impact</a>
     <a href="#roadmap" class="mobile-link">Roadmap</a>
@@ -2180,11 +2182,11 @@
     </div>
 
     <div class="explainer-footer">
-      <div class="explainer-footer-label">Coming Soon</div>
+      <div class="explainer-footer-label">Also in this series</div>
       <div class="coming-soon-pills">
-        <span class="coming-pill">What is Demographic Parity?</span>
-        <span class="coming-pill">Why Fairness Metrics Conflict</span>
-        <span class="coming-pill">Equalized Odds vs Predictive Parity</span>
+        <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Sampling Bias</a>
+        <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ SHAP Values</a>
+        <span class="coming-pill">Demographic Parity — coming soon</span>
       </div>
     </div>
   </div>
@@ -2395,11 +2397,193 @@
     </div>
 
     <div class="explainer-footer">
-      <div class="explainer-footer-label">Coming Soon</div>
+      <div class="explainer-footer-label">Also in this series</div>
       <div class="coming-soon-pills">
-        <span class="coming-pill">What is Demographic Parity?</span>
-        <span class="coming-pill">Why Fairness Metrics Conflict</span>
-        <span class="coming-pill">Equalized Odds vs Predictive Parity</span>
+        <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
+        <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ SHAP Values</a>
+        <span class="coming-pill">Demographic Parity — coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLAINER: SHAP VALUES -->
+  <div id="explainer-shap" style="position:relative; top:-80px; visibility:hidden;"></div>
+  <div class="explainer-card reveal" style="margin-top: 2px;">
+    <div class="explainer-header">
+      <div class="explainer-meta">
+        <div class="explainer-num">EXPLAINER — 03</div>
+        <h3 class="explainer-title">WHAT ARE SHAP VALUES?</h3>
+        <p class="explainer-tagline">The reason "the model said so" is not an explanation — and what to do instead.</p>
+      </div>
+      <div class="explainer-definition">
+        <div class="explainer-def-label">One-Sentence Definition</div>
+        <p class="explainer-def-text">SHAP values (SHapley Additive exPlanations) tell you exactly how much each feature contributed to a specific model prediction — in a unit you can reason about — so you can see what actually drove a decision, not just what the decision was.</p>
+      </div>
+    </div>
+
+    <div class="explainer-body">
+
+      <div class="explainer-block">
+        <div class="explainer-block-label">Why This Matters</div>
+        <p class="explainer-block-text">Most AI systems deployed in high-stakes domains — criminal justice, hiring, lending, healthcare — are black boxes. They produce a score or a decision and don't explain why. This is not just an inconvenience. It is a fairness problem. If you cannot inspect how a model arrived at a decision, you cannot detect whether a protected attribute drove the outcome, challenge a decision that affected you, or comply with regulations that require explainability. SHAP values make the black box transparent. They are grounded in cooperative game theory (Shapley values), providing a mathematically principled way to attribute credit or blame across features — consistent, locally accurate, and model-agnostic.</p>
+      </div>
+
+      <div class="proxy-table-wrap">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">SHAP vs Other Explainability Methods</div>
+        <div class="proxy-table">
+          <div class="proxy-row proxy-row-head">
+            <span>Method</span>
+            <span>Scope</span>
+            <span>Consistent?</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">SHAP</code></span>
+            <span class="proxy-attr">Local + Global</span>
+            <span>✓ Mathematically guaranteed — values sum exactly to the prediction</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">LIME</code></span>
+            <span class="proxy-attr">Local only</span>
+            <span>✗ Approximate — results can vary between runs</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Feature Importance</code></span>
+            <span class="proxy-attr">Global only</span>
+            <span>✗ Biased toward high-cardinality features; no per-decision insight</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Permutation Importance</code></span>
+            <span class="proxy-attr">Global only</span>
+            <span>Reasonable, but tells you nothing about individual decisions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-proof">
+        <div class="explainer-block-label">Real-World Proof: COMPAS Analysis</div>
+        <p class="explainer-block-text" style="margin-top: 12px;">We applied SHAP to the biased and fair COMPAS models to inspect what they were actually using — feature by feature, decision by decision.</p>
+        <div class="proof-step" style="margin-top: 20px;">
+          <div class="proof-step-num">STEP 01</div>
+          <div class="proof-step-label">SHAP audit of biased model — what was actually driving the scores?</div>
+          <div class="terminals-grid" style="margin-top: 12px;">
+            <div class="terminal">
+              <div class="terminal-bar">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="terminal-label">shap_audit.py — biased model</span>
+              </div>
+              <div class="terminal-body">
+                <div class="t-head">--- MEAN ABSOLUTE SHAP VALUES ---</div>
+                <div class="t-bad">race_African-American&nbsp;&nbsp;&nbsp;&nbsp;0.1847 ← top driver</div>
+                <div class="t-bad">CustodyStatus_Jail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.1623 ← proxy, 2nd</div>
+                <div class="t-normal">race_Caucasian&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.1401</div>
+                <div class="t-normal">Sex_Code_Text_Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0412</div>
+                <div class="t-normal">MaritalStatus_Single&nbsp;&nbsp;&nbsp;&nbsp;0.0298</div>
+              </div>
+            </div>
+            <div class="terminal">
+              <div class="terminal-bar">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="terminal-label">interpretation.py</span>
+              </div>
+              <div class="terminal-body">
+                <div class="t-head"># Race = model's single largest driver</div>
+                <div class="t-bad"># Race + proxy = 60%+ of total influence</div>
+                <div class="t-normal"># Without SHAP, accuracy numbers</div>
+                <div class="t-normal"># tell you nothing about this</div>
+                <div class="t-accent"># SHAP makes the black box visible</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proof-step" style="margin-top: 24px;">
+          <div class="proof-step-num">STEP 02</div>
+          <div class="proof-step-label">SHAP audit of fair model — race gone, influence redistributed</div>
+          <div class="terminals-grid" style="margin-top: 12px;">
+            <div class="terminal" style="border-color: color-mix(in srgb, var(--accent) 30%, var(--border));">
+              <div class="terminal-bar">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="terminal-label">shap_audit_fair.py — fair model</span>
+              </div>
+              <div class="terminal-body">
+                <div class="t-head">--- MEAN ABSOLUTE SHAP VALUES ---</div>
+                <div class="t-good">MaritalStatus_Single&nbsp;&nbsp;&nbsp;&nbsp;0.0531</div>
+                <div class="t-good">Sex_Code_Text_Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0489</div>
+                <div class="t-good">MaritalStatus_Married&nbsp;&nbsp;&nbsp;0.0214</div>
+                <div class="t-accent">→ No protected attributes. No proxies.</div>
+                <div class="t-accent">→ Fairness gap: 15.69% (was 86.77%)</div>
+              </div>
+            </div>
+            <div class="terminal">
+              <div class="terminal-bar">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span class="terminal-label">explain_decision.py</span>
+              </div>
+              <div class="terminal-body">
+                <div class="t-head"># Explain a single prediction</div>
+                <div class="t-normal">sv = explainer.shap_values(X_test[[i]])[1][0]</div>
+                <div class="t-normal">explanation = sorted(</div>
+                <div class="t-normal">&nbsp;&nbsp;zip(feature_names, sv),</div>
+                <div class="t-normal">&nbsp;&nbsp;key=lambda x: abs(x[1]))</div>
+                <div class="t-accent"># Every decision, explained</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-detection">
+        <div class="explainer-block-label">How to Run a SHAP Bias Audit</div>
+        <div class="code-block" style="margin-top: 16px;">
+          <div class="code-block-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            shap_bias_audit.py
+          </div>
+          <div class="code-block-body" style="font-size: 11px;">
+            <span class="k">import</span> <span class="v">shap</span><br>
+            <span class="k">import</span> <span class="v">pandas as pd</span><br><br>
+            <span class="c"># 1. Fit explainer (fast for tree models)</span><br>
+            explainer = shap.TreeExplainer(model)<br>
+            shap_values = explainer.shap_values(X_test)<br><br>
+            <span class="k">def</span> <span class="v">shap_bias_audit</span>(shap_vals, feature_names, protected):<br>
+            &nbsp;&nbsp;<span class="c">"""Flag protected attributes / proxies in top drivers."""</span><br>
+            &nbsp;&nbsp;mean_abs = pd.Series(shap_vals.mean(axis=<span class="v">0</span>), index=feature_names).abs()<br>
+            &nbsp;&nbsp;mean_abs = mean_abs.sort_values(ascending=<span class="v">False</span>).reset_index()<br>
+            &nbsp;&nbsp;mean_abs.columns = [<span class="v">'feature'</span>, <span class="v">'mean_abs_shap'</span>]<br>
+            &nbsp;&nbsp;mean_abs[<span class="v">'flag'</span>] = mean_abs[<span class="v">'feature'</span>].apply(<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="k">lambda</span> f: <span class="v">'BIAS RISK'</span> <span class="k">if any</span>(p <span class="k">in</span> f <span class="k">for</span> p <span class="k">in</span> protected) <span class="k">else</span> <span class="v">''</span>)<br>
+            &nbsp;&nbsp;<span class="k">return</span> mean_abs<br><br>
+            <span class="c"># Run before deployment — every time</span><br>
+            protected = [<span class="v">'race'</span>, <span class="v">'gender'</span>, <span class="v">'age'</span>, <span class="v">'CustodyStatus'</span>]<br>
+            audit = shap_bias_audit(shap_values[<span class="v">1</span>], X_test.columns, protected)<br>
+            <span class="c"># → Rows flagged BIAS RISK → remove from feature set</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-takeaway">
+        <div class="explainer-block-label">The Bigger Picture</div>
+        <p class="explainer-block-text">Explainability is not a nice-to-have. It is the mechanism by which accountability becomes possible. A person denied a loan, flagged as high-risk in a courtroom, or rejected by a hiring algorithm has a legitimate interest in knowing why. SHAP values do not fix bias — removing protected attributes and proxy variables fixes bias. What SHAP does is make the model's reasoning visible, so you can catch problems before deployment, explain decisions to the people affected, and demonstrate to auditors and regulators that the system is operating as intended. The pipeline is not complete until you can explain every decision the model makes.</p>
+        <div class="explainer-callout">Accuracy tells you how often the model is right. SHAP tells you why — and that's where the bias hides.</div>
+      </div>
+
+      <div class="explainer-reading">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Further Reading</div>
+        <div class="reading-links">
+          <a href="https://arxiv.org/abs/1705.07874" target="_blank" class="reading-link">↗ Lundberg &amp; Lee: A Unified Approach to Interpreting Model Predictions (NeurIPS 2017)</a>
+          <a href="https://shap.readthedocs.io/" target="_blank" class="reading-link">↗ SHAP Documentation and Examples</a>
+          <a href="https://fairmlbook.org/" target="_blank" class="reading-link">↗ Barocas &amp; Hardt: Fairness and Machine Learning — Chapter 6</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="explainer-footer">
+      <div class="explainer-footer-label">Also in this series</div>
+      <div class="coming-soon-pills">
+        <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
+        <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
+        <span class="coming-pill">Demographic Parity — coming soon</span>
+        <span class="coming-pill">Why Fairness Metrics Conflict — coming soon</span>
       </div>
     </div>
   </div>
@@ -2466,6 +2650,13 @@
       <div>
         <div class="roadmap-name">Explainer: Sampling Bias</div>
         <div class="roadmap-meta">Gender Shades study · audit code · mitigation strategies</div>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-status done"></div>
+      <div>
+        <div class="roadmap-name">Explainer: SHAP Values</div>
+        <div class="roadmap-meta">Model explainability · bias auditing · Shapley attribution</div>
       </div>
     </div>
     <div class="roadmap-item">
