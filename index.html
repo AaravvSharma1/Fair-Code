@@ -1569,6 +1569,7 @@
         <li><a href="#explainer-sampling">02 — Sampling Bias</a></li>
         <li><a href="#explainer-shap">03 — SHAP Values</a></li>
         <li><a href="#explainer-equalized-odds">04 — Equalized Odds</a></li>
+        <li><a href="#explainer-disparate-impact">05 — Disparate Impact</a></li>
       </ul>
     </li>
     <li><a href="#impact">Impact</a></li>
@@ -1600,6 +1601,7 @@
     <a href="#explainer-sampling" class="mobile-link mobile-sub">02 — Sampling Bias</a>
     <a href="#explainer-shap" class="mobile-link mobile-sub">03 — SHAP Values</a>
     <a href="#explainer-equalized-odds" class="mobile-link mobile-sub">04 — Equalized Odds</a>
+    <a href="#explainer-disparate-impact" class="mobile-link mobile-sub">05 — Disparate Impact</a>
     <a href="#impact" class="mobile-link">Impact</a>
     <a href="#roadmap" class="mobile-link">Roadmap</a>
     <div class="mobile-social-row">
@@ -1659,6 +1661,8 @@
     <span class="ticker-item"><span class="dot"></span>BMI + SMOKER + DIABETIC PROXIES</span>
     <span class="ticker-item"><span class="dot"></span>AGE GAP 7.93% → 3.18% · 60% REDUCTION</span>
     <span class="ticker-item"><span class="dot"></span>EQUALIZED ODDS · TPR + FPR PARITY</span>
+    <span class="ticker-item red"><span class="dot"></span>DISPARATE IMPACT · 80% RULE</span>
+    <span class="ticker-item"><span class="dot"></span>FOUR-FIFTHS RULE · EEOC STANDARD</span>
     <!-- dupe for infinite scroll -->
     <span class="ticker-item red"><span class="dot"></span>COMPAS CRIMINAL JUSTICE</span>
     <span class="ticker-item"><span class="dot"></span>AI HIRING DISCRIMINATION</span>
@@ -1674,6 +1678,8 @@
     <span class="ticker-item"><span class="dot"></span>BMI + SMOKER + DIABETIC PROXIES</span>
     <span class="ticker-item"><span class="dot"></span>AGE GAP 7.93% → 3.18% · 60% REDUCTION</span>
     <span class="ticker-item"><span class="dot"></span>EQUALIZED ODDS · TPR + FPR PARITY</span>
+    <span class="ticker-item red"><span class="dot"></span>DISPARATE IMPACT · 80% RULE</span>
+    <span class="ticker-item"><span class="dot"></span>FOUR-FIFTHS RULE · EEOC STANDARD</span>
   </div>
 </div>
 
@@ -2649,7 +2655,7 @@
         <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
         <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
         <a href="#explainer-equalized-odds" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Equalized Odds</a>
-        <span class="coming-pill">Demographic Parity — coming soon</span>
+        <a href="#explainer-disparate-impact" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Disparate Impact</a>
       </div>
     </div>
   </div>
@@ -2792,7 +2798,221 @@
         <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
         <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
         <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ SHAP Values</a>
-        <span class="coming-pill">Demographic Parity — coming soon</span>
+        <a href="#explainer-disparate-impact" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Disparate Impact</a>
+        <span class="coming-pill">Why Fairness Metrics Conflict — coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLAINER 05: DISPARATE IMPACT -->
+  <div id="explainer-disparate-impact" style="position:relative; top:-80px; visibility:hidden;"></div>
+  <div class="explainer-card reveal">
+    <div class="explainer-header">
+      <div class="explainer-meta">
+        <div class="explainer-num">EXPLAINER — 05</div>
+        <h3 class="explainer-title">WHAT IS DISPARATE IMPACT (THE 80% RULE)?</h3>
+        <p class="explainer-tagline">The legal test that has decided employment discrimination cases since 1971 — and the simplest fairness check you can run on any hiring model.</p>
+      </div>
+      <div class="explainer-definition">
+        <div class="explainer-def-label">One-Sentence Definition</div>
+        <p class="explainer-def-text">Disparate Impact is a legal and statistical test that flags a selection process as discriminatory when the selection rate for a protected group is <em>less than 80% of the selection rate for the most-selected group</em>. That threshold is the <strong>Four-Fifths Rule</strong>, codified in the EEOC's Uniform Guidelines on Employee Selection Procedures (1978), 29 CFR §1607.4(D).</p>
+      </div>
+    </div>
+
+    <div class="explainer-body">
+      <div class="explainer-block">
+        <div class="explainer-block-label">Why This Matters</div>
+        <p class="explainer-block-text">Most fairness metrics are abstract. The 80% rule is not. It is the actual threshold the EEOC, federal courts, and the Department of Labor use to decide whether to investigate an employer for discriminatory hiring, promotion, or firing. A model can have 95% accuracy and still fail the 80% rule — accuracy says nothing about who is being filtered out at the gate.</p>
+        <p class="explainer-block-text" style="margin-top: 12px;">This is the rule that matters in practice: HR teams use it to screen vendor hiring tools before deployment. Auditors use it to flag protected-class disparities. Plaintiffs use it as prima facie evidence in Title VII lawsuits. And procurement teams put it in vendor contracts for AI screening products.</p>
+      </div>
+
+      <div class="proxy-table-wrap">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Biased vs. Mitigated Model — AI Hiring Audit</div>
+        <div class="proxy-table">
+          <div class="proxy-row proxy-row-head">
+            <span>Model</span>
+            <span>Men Hire Rate</span>
+            <span>Women Hire Rate</span>
+            <span style="color: var(--accent2);">DI Ratio</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">unfair.py</code></span>
+            <span style="color: var(--muted);">21.62%</span>
+            <span style="color: var(--accent2);">17.10%</span>
+            <span style="color: var(--accent2); font-weight: 500;">0.791 — FAILS</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">fair.py</code></span>
+            <span style="color: var(--accent3);">11.48%</span>
+            <span style="color: var(--accent3);">11.35%</span>
+            <span style="color: var(--accent3); font-weight: 500;">0.989 — PASSES</span>
+          </div>
+        </div>
+        <div class="explainer-callout" style="margin-top: 16px;">0.791 &lt; 0.80 → A real EEOC complaint filed against the biased model survives the prima facie stage. The employer then bears the burden of proving the selection process is "job-related and consistent with business necessity" — the standard from <em>Griggs v. Duke Power Co.</em>, 401 U.S. 424 (1971).</div>
+      </div>
+
+      <div class="explainer-proof">
+        <div class="explainer-block-label" style="margin-bottom: 24px;">Real-World Proof: The AI Hiring Audit</div>
+        <div class="proof-steps">
+          <div class="proof-step">
+            <div class="proof-step-num">STEP 01</div>
+            <div class="proof-step-label">Biased model — gender and age included in features</div>
+            <div class="terminals-grid" style="margin-top: 12px;">
+              <div class="terminal">
+                <div class="terminal-bar">
+                  <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                  <span class="terminal-label">unfair.py — BIASED MODEL</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="t-head">--- BIASED MODEL RESULTS ---</div>
+                  <div class="t-normal">Male Hire Rate: 21.62%</div>
+                  <div class="t-bad">Female Hire Rate: 17.10%</div>
+                  <div class="t-bad">DI Ratio: 17.10 / 21.62 = 0.791</div>
+                  <div class="t-bad">0.791 &lt; 0.80 → FAILS Four-Fifths Rule</div>
+                </div>
+              </div>
+              <div class="terminal">
+                <div class="terminal-bar">
+                  <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                  <span class="terminal-label">legal_exposure.py</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="t-head"># This is now a legal problem</div>
+                  <div class="t-bad">eeoc_complaint: survives_prima_facie = True</div>
+                  <div class="t-normal">burden_shifts_to: employer</div>
+                  <div class="t-normal">must_prove: job_relatedness + business_necessity</div>
+                  <div class="t-bad">statute: 42 U.S.C. §2000e-2(k)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proof-step" style="margin-top: 24px;">
+            <div class="proof-step-num">STEP 02</div>
+            <div class="proof-step-label">Fair model — drop gender and age, retain Experience + Test Score only</div>
+            <div class="terminals-grid" style="margin-top: 12px;">
+              <div class="terminal" style="border-color: color-mix(in srgb, var(--accent) 30%, var(--border));">
+                <div class="terminal-bar">
+                  <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                  <span class="terminal-label">fair.py — MITIGATED MODEL</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="t-good">Male Hire Rate: 11.48%</div>
+                  <div class="t-good">Female Hire Rate: 11.35%</div>
+                  <div class="t-accent">DI Ratio: 11.35 / 11.48 = 0.989</div>
+                  <div class="t-accent">0.989 ≥ 0.80 → PASSES Four-Fifths Rule</div>
+                </div>
+              </div>
+              <div class="terminal">
+                <div class="terminal-bar">
+                  <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                  <span class="terminal-label">disparate_impact.py</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="t-head"># Four-Fifths Rule check</div>
+                  <div class="t-good">selection_rates: Female=0.1135, Male=0.1148</div>
+                  <div class="t-good">disparate_impact_ratio: 0.989</div>
+                  <div class="t-accent">passes_four_fifths_rule: True</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-detection">
+        <div class="explainer-block-label">How to Calculate It in Python</div>
+        <div class="code-block" style="margin-top: 16px;">
+          <div class="code-block-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            disparate_impact.py
+          </div>
+          <div class="code-block-body" style="font-size: 11px;">
+            <span class="k">import</span> <span class="v">pandas as pd</span><br><br>
+            <span class="k">def</span> <span class="v">disparate_impact_ratio</span>(df, prediction_col, group_col, positive_label=<span class="v">1</span>):<br>
+            &nbsp;&nbsp;<span class="c">"""Four-Fifths Rule: (lowest selection rate) / (highest selection rate)."""</span><br>
+            &nbsp;&nbsp;selection_rates = (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;df.assign(_selected=(df[prediction_col] == positive_label).astype(<span class="v">int</span>))<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.groupby(group_col)[<span class="v">"_selected"</span>]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.mean()<br>
+            &nbsp;&nbsp;)<br>
+            &nbsp;&nbsp;ratio = selection_rates.min() / selection_rates.max()<br>
+            &nbsp;&nbsp;passes = ratio >= <span class="v">0.80</span><br>
+            &nbsp;&nbsp;<span class="k">return</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="v">"selection_rates"</span>: selection_rates.to_dict(),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="v">"disparate_impact_ratio"</span>: round(ratio, <span class="v">3</span>),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="v">"passes_four_fifths_rule"</span>: bool(passes),<br>
+            &nbsp;&nbsp;}<br><br>
+            <span class="c"># Or use Fairlearn — mathematically identical</span><br>
+            <span class="k">from</span> <span class="v">fairlearn.metrics</span> <span class="k">import</span> <span class="v">demographic_parity_ratio</span><br>
+            ratio = demographic_parity_ratio(y_true, model.predict(X_test),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sensitive_features=groups)<br>
+            <span class="c"># passes if ratio >= 0.80</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-block">
+        <div class="explainer-block-label">The Math</div>
+        <p class="explainer-block-text">For a protected attribute A taking values a (disadvantaged) and b (advantaged), the selection rate for group g is P(Ŷ=1 | A=g). The Disparate Impact Ratio is DI = P(Ŷ=1 | A=a) / P(Ŷ=1 | A=b), where a is the group with the lower selection rate. The Four-Fifths Rule: DI ≥ 0.80 → no flag; DI &lt; 0.80 → legal scrutiny applies. The ratio always sits in [0, 1] — you always divide the smaller rate by the larger.</p>
+      </div>
+
+      <div class="proxy-table-wrap">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Limitations / Trade-offs</div>
+        <div class="proxy-table">
+          <div class="proxy-row proxy-row-head">
+            <span>Limitation</span>
+            <span>The Problem</span>
+            <span>What to Use Instead</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Threshold, not guarantee</code></span>
+            <span class="proxy-attr">0.81 passes and 0.79 fails, but the real disparity is identical</span>
+            <span>Treat it as a floor — investigate any ratio below ~0.90</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Ignores error types</code></span>
+            <span class="proxy-attr">Measures who gets selected, not who gets selected wrongly</span>
+            <span>Pair with Equalized Odds to catch disparate false positive rates</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Satisfiable by lowering the bar</code></span>
+            <span class="proxy-attr">Hiring everyone or no one both pass the rule</span>
+            <span>Require job-relatedness analysis alongside the ratio check</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Proxy variables defeat it</code></span>
+            <span class="proxy-attr">Dropping the protected attribute doesn't fix the ratio if proxies remain</span>
+            <span>Run proxy variable detection first — see Explainer 01</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-takeaway">
+        <div class="explainer-block-label">The Bigger Picture</div>
+        <p class="explainer-block-text">The 80% rule is one of the few places where civil-rights law, statistics, and machine learning all agree on the same number. It was written in 1978 for paper-and-pen hiring tests; it applies word-for-word to a Random Forest classifier in 2026. That is what makes it useful as a deployment check: it is not a research metric. It is the metric that triggers an EEOC investigation, that survives the motion-to-dismiss stage of a Title VII lawsuit, and that procurement teams put in vendor contracts.</p>
+        <p class="explainer-block-text" style="margin-top: 14px;">If your hiring model fails it, you do not need a fairness expert to explain why that is a problem — the law has already explained it for you.</p>
+        <div class="explainer-callout">Run the 80% rule against every classifier that decides who gets a job, a loan, a lease, or an insurance policy. If it fails, you have a legal problem before you have a technical one.</div>
+      </div>
+
+      <div class="explainer-reading">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Further Reading</div>
+        <div class="reading-links">
+          <a href="https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607" target="_blank" class="reading-link">↗ EEOC Uniform Guidelines on Employee Selection Procedures, 29 CFR Part 1607</a>
+          <a href="https://supreme.justia.com/cases/federal/us/401/424/" target="_blank" class="reading-link">↗ Griggs v. Duke Power Co., 401 U.S. 424 (1971) — establishing the disparate-impact doctrine</a>
+          <a href="https://www.californialawreview.org/print/2-big-datas-disparate-impact" target="_blank" class="reading-link">↗ Barocas &amp; Selbst: Big Data's Disparate Impact, 104 Calif. L. Rev. 671 (2016)</a>
+          <a href="https://arxiv.org/abs/1703.00056" target="_blank" class="reading-link">↗ Chouldechova: Fair Prediction with Disparate Impact — the impossibility result (2017)</a>
+          <a href="https://fairlearn.org/main/user_guide/assessment/common_fairness_metrics.html" target="_blank" class="reading-link">↗ Fairlearn: demographic_parity_ratio documentation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="explainer-footer">
+      <div class="explainer-footer-label">Also in this series</div>
+      <div class="coming-soon-pills">
+        <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
+        <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
+        <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ SHAP Values</a>
+        <a href="#explainer-equalized-odds" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Equalized Odds</a>
         <span class="coming-pill">Why Fairness Metrics Conflict — coming soon</span>
       </div>
     </div>
@@ -2882,6 +3102,13 @@
       <div>
         <div class="roadmap-name">Explainer: Equalized Odds</div>
         <div class="roadmap-meta">TPR + FPR parity · COMPAS proof · calibration conflict · fairlearn detection code</div>
+      </div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-status done"></div>
+      <div>
+        <div class="roadmap-name">Explainer: Disparate Impact (80% Rule)</div>
+        <div class="roadmap-meta">Four-Fifths Rule · EEOC standard · hiring audit proof · Griggs v. Duke Power</div>
       </div>
     </div>
     <div class="roadmap-item">
