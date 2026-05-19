@@ -27,7 +27,7 @@ Every audit lives in its own top-level folder. Name it after the domain, not the
 ```
 Fair-Code/
 ├── COMPAS/                        ← existing
-├── Ai Fair recrutment Dataset/    ← existing
+├── AI Fair Recruitment/           ← existing
 ├── German Credit Lending/         ← existing
 ├── Insurance Denial/              ← existing
 ├── Your-Domain-Here/              ← your new audit
@@ -41,6 +41,12 @@ Fair-Code/
 │   ├── sampling-bias.md           ← existing
 │   ├── shap-values.md             ← existing
 │   └── your-concept-name.md       ← your new explainer
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── index.html
+└── requirements.txt
 ```
 
 No subfolders within audit folders, no extra files. Keep it flat.
@@ -94,7 +100,7 @@ New Fairness Gap: XX.XX%
 
 This is the most important part of the audit. Removing the protected attribute alone is rarely enough.
 
-A proxy variable is a feature that correlates with the protected attribute strongly enough to smuggle the bias back through the model — even after you've dropped race or gender directly. In the COMPAS audit, `CustodyStatus` was a proxy for race because of historical over-policing patterns. In the German Credit audit, `employment` (tenure) was a proxy for age because a 24-year-old structurally cannot have 10 years of work history.
+A proxy variable is a feature that correlates with the protected attribute strongly enough to smuggle the bias back through the model — even after you've dropped race or gender directly. In the COMPAS audit, `CustodyStatus` was a proxy for race because of historical over-policing patterns. In the German Credit Lending audit, `employment` (tenure) was a proxy for age because a 24-year-old structurally cannot have 10 years of work history. In the Insurance Denial audit, `bmi`, `smoker`, and `diabetic` were proxies for race and class because of structural disparities in American healthcare.
 
 You must identify and document your proxy variables. To find them:
 
@@ -168,7 +174,13 @@ If your domain genuinely requires a different metric (equalized odds, predictive
 
 You don't have to audit a dataset to contribute. If you can explain a concept in algorithmic fairness clearly — with real examples and runnable code — an explainer belongs here too.
 
-Explainers live in the `explainers/` folder at the repo root. The existing ones are `proxy-variables.md` and `sampling-bias.md`. Future ones might cover demographic parity, equalized odds, predictive parity, disparate impact, or fairness metric trade-offs.
+Explainers live in the `explainers/` folder at the repo root. The existing ones are:
+
+- `proxy-variables.md` — why AI stays biased even after you remove protected attributes
+- `sampling-bias.md` — why your training data may not represent the people your model affects
+- `shap-values.md` — how to explain individual AI decisions and use that to catch bias
+
+Future ones might cover demographic parity, equalized odds, predictive parity, disparate impact, or fairness metric trade-offs.
 
 ### File structure
 
@@ -185,13 +197,13 @@ One file per concept. Name it after the concept in lowercase with hyphens: `demo
 
 ### What a good explainer contains
 
-Follow the structure of `proxy-variables.md`, `sampling-bias.md`, and `shap-values.md`:
+Follow the structure of the existing explainers:
 
 **1. One-sentence definition** — what is the concept, stated as plainly as possible. No jargon in the definition itself.
 
 **2. Why it matters** — the real-world consequence if you ignore it. One short paragraph.
 
-**3. Concrete example** — ideally drawn from one of the audits in this repo (COMPAS, hiring, German Credit), or from a well-documented real-world case. The example should show the concept in action, not just describe it abstractly.
+**3. Concrete example** — ideally drawn from one of the audits in this repo (COMPAS, AI Fair Recruitment, German Credit Lending, Insurance Denial), or from a well-documented real-world case. The example should show the concept in action, not just describe it abstractly.
 
 **4. Detection or measurement code** — a runnable Python snippet demonstrating how to actually apply the concept. Use `pandas` and `scikit-learn` where possible to stay consistent with the rest of the repo.
 
@@ -216,7 +228,7 @@ def measure_concept(df, prediction_col, group_col):
 
 ### The standard to hit
 
-The proxy variables, sampling bias, and SHAP values explainers are the bar. They define the concept clearly, prove it with real numbers or runnable simulations, give you code to detect or apply it yourself, and explain why it exists structurally. Your explainer should do the same for its concept.
+The existing explainers are the bar. They define the concept clearly, prove it with real numbers or runnable simulations, give you code to detect or apply it yourself, and explain why it exists structurally. Your explainer should do the same for its concept.
 
 If you can't show the concept with real data from one of the existing audits, use a well-documented external case with a source link. Do not use invented toy examples as the primary illustration.
 
