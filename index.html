@@ -73,7 +73,6 @@
     transition: background 0.3s, color 0.3s;
   }
 
-  /* subtle vignette only */
   body::before {
     content: '';
     position: fixed;
@@ -192,7 +191,6 @@
 
   .nav-social-link:hover { color: var(--accent); border-color: var(--border2); background: color-mix(in srgb, var(--accent) 5%, transparent); }
 
-  /* THEME TOGGLE */
   .theme-toggle {
     width: 36px; height: 36px;
     border: 1px solid var(--border2);
@@ -229,7 +227,6 @@
     z-index: 2;
   }
 
-  /* BIG DIAGONAL TEXT */
   .hero-watermark {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -253,7 +250,6 @@
     user-select: none;
   }
 
-  /* CORNER MARKERS */
   .corner {
     position: absolute;
     width: 20px; height: 20px;
@@ -615,7 +611,7 @@
     font-weight: 400;
   }
 
-  /* ── PROJECTS / EXPERIMENTS ────────────────────────────────────────────── */
+  /* PROJECTS */
   .projects-header {
     display: flex;
     justify-content: space-between;
@@ -633,7 +629,6 @@
     word-break: break-word;
   }
 
-  /* Project cards — same structural layout, fresh skin */
   .project-card {
     border: 1px solid var(--border);
     padding: 48px;
@@ -644,7 +639,6 @@
     background: var(--surface);
   }
 
-  /* Left accent bar instead of top line */
   .project-card::before {
     content: '';
     position: absolute;
@@ -660,7 +654,6 @@
   .project-card:hover { border-color: var(--border2); }
   .project-card.red::before { background: var(--accent2); }
 
-  /* Subtle index watermark */
   .project-card .card-bg-num {
     position: absolute;
     top: -12px; right: 32px;
@@ -709,7 +702,6 @@
     font-weight: 400;
   }
 
-  /* Stats on the right */
   .project-stats { text-align: right; }
 
   .project-stats .stat-label {
@@ -745,7 +737,6 @@
     opacity: 0.8;
   }
 
-  /* TERMINAL — same structure, slightly refined */
   .terminals-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -789,14 +780,12 @@
     font-weight: 400;
   }
 
-
   .t-head { color: var(--t-head-color); }
-  .t-bad { color: #f87171; }       /* bright coral-red — readable on dark terminal in both modes */
-  .t-good { color: #4ade80; }      /* bright green — readable on dark terminal in both modes */
-  .t-accent { color: #60a5fa; }    /* bright blue — readable on dark terminal in both modes */
+  .t-bad { color: #f87171; }
+  .t-good { color: #4ade80; }
+  .t-accent { color: #60a5fa; }
   .t-normal { color: var(--terminal-text); }
 
-  /* KEY INSIGHT */
   .key-insight {
     margin-top: 32px;
     padding-top: 32px;
@@ -819,7 +808,6 @@
     font-weight: 400;
   }
 
-  /* BIAS BARS */
   .bias-bar-wrap {
     margin-top: 32px;
     display: flex;
@@ -1104,7 +1092,7 @@
     color: var(--border2);
   }
 
-  /* ── EXPLAINERS ─────────────────────────────────────────────────────────── */
+  /* EXPLAINERS */
   .explainer-card {
     border: 1px solid var(--border);
     background: var(--bg);
@@ -1195,7 +1183,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* Proxy table */
   .proxy-table {
     border: 1px solid var(--border);
     overflow: hidden;
@@ -1239,7 +1226,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* Proof steps */
   .proof-step-num {
     font-size: 9px;
     color: var(--accent);
@@ -1255,7 +1241,6 @@
     letter-spacing: 0.04em;
   }
 
-  /* Summary comparison table */
   .explainer-callout {
     margin-top: 20px;
     border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
@@ -1267,7 +1252,6 @@
     background: color-mix(in srgb, var(--accent) 4%, transparent);
   }
 
-  /* Reading links */
   .reading-links {
     display: flex;
     flex-direction: column;
@@ -1287,7 +1271,6 @@
 
   .reading-link:hover { color: var(--accent); border-color: var(--border2); background: var(--surface); }
 
-  /* Explainer footer */
   .explainer-footer {
     padding: 32px 48px;
     border-top: 1px solid var(--border);
@@ -1321,19 +1304,83 @@
     color: var(--muted);
   }
 
-  /* RESPONSIVE additions */
-  @media (max-width: 900px) {
-    .explainer-header { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px; }
-    .explainer-body { padding: 28px 20px; gap: 36px; }
-    .proxy-row { grid-template-columns: 130px 110px 1fr; }
-    .explainer-footer { padding: 24px 20px; }
+  /* NAV DROPDOWNS */
+  .nav-dropdown-wrap {
+    position: relative;
+    height: 100%;
   }
 
-  @media (max-width: 600px) {
-    .proxy-row { grid-template-columns: 1fr; }
-    .proxy-row > span { border-right: none; border-bottom: 1px solid var(--border); }
-    .proxy-row > span:last-child { border-bottom: none; }
-    .proxy-row-head { display: none; }
+  .nav-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: crosshair;
+  }
+
+  .nav-caret {
+    font-size: 8px;
+    opacity: 0.5;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .nav-dropdown-wrap:hover .nav-caret {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    min-width: 210px;
+    background: var(--nav-bg);
+    border: 1px solid var(--border2);
+    border-top: 2px solid var(--accent);
+    list-style: none;
+    padding: 4px 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    backdrop-filter: blur(12px);
+    z-index: 200;
+  }
+
+  .nav-dropdown-wrap:hover .nav-dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown li {
+    height: auto;
+  }
+
+  .nav-dropdown li a {
+    display: block;
+    height: auto;
+    padding: 10px 18px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s, background 0.15s, padding-left 0.15s;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown li:last-child a {
+    border-bottom: none;
+  }
+
+  .nav-dropdown li a:hover {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+    padding-left: 24px;
   }
 
   /* RESPONSIVE */
@@ -1344,7 +1391,6 @@
     .nav-github { display: none; }
     .theme-toggle { width: 30px; height: 30px; font-size: 12px; margin-left: 0; }
 
-    /* Hamburger button */
     .nav-hamburger {
       display: flex;
       flex-direction: column;
@@ -1369,7 +1415,6 @@
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    /* Mobile drawer */
     .mobile-nav {
       position: fixed;
       top: 52px; left: 0; right: 0;
@@ -1381,7 +1426,7 @@
       overflow: hidden;
       transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .mobile-nav.open { max-height: 600px; }
+    .mobile-nav.open { max-height: 700px; }
     .mobile-nav-inner {
       padding: 8px 0 16px;
     }
@@ -1467,11 +1512,23 @@
 
     .section-eyebrow { margin-bottom: 36px; }
     .hero-watermark span { font-size: clamp(100px, 30vw, 200px); }
+
+    .explainer-header { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px; }
+    .explainer-body { padding: 28px 20px; gap: 36px; }
+    .proxy-row { grid-template-columns: 130px 110px 1fr; }
+    .explainer-footer { padding: 24px 20px; }
   }
 
   @media (min-width: 901px) {
     .nav-hamburger { display: none; }
     .mobile-nav { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .proxy-row { grid-template-columns: 1fr; }
+    .proxy-row > span { border-right: none; border-bottom: 1px solid var(--border); }
+    .proxy-row > span:last-child { border-bottom: none; }
+    .proxy-row-head { display: none; }
   }
 
   @media (max-width: 480px) {
@@ -1486,85 +1543,6 @@
     .bias-row { grid-template-columns: 90px 1fr 48px; gap: 8px; }
     .terminal-body { padding: 14px 14px; font-size: 10px; }
   }
-  /* NAV DROPDOWNS */
-  .nav-dropdown-wrap {
-    position: relative;
-    height: 100%;
-  }
-
-  .nav-dropdown-trigger {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: crosshair;
-  }
-
-  .nav-caret {
-    font-size: 8px;
-    opacity: 0.5;
-    transition: transform 0.2s, opacity 0.2s;
-    display: inline-block;
-    line-height: 1;
-  }
-
-  .nav-dropdown-wrap:hover .nav-caret {
-    transform: rotate(180deg);
-    opacity: 1;
-  }
-
-  .nav-dropdown {
-    position: absolute;
-    top: 100%;
-    left: -1px;
-    min-width: 210px;
-    background: var(--nav-bg);
-    border: 1px solid var(--border2);
-    border-top: 2px solid var(--accent);
-    list-style: none;
-    padding: 4px 0;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-6px);
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    backdrop-filter: blur(12px);
-    z-index: 200;
-  }
-
-  .nav-dropdown-wrap:hover .nav-dropdown {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0);
-  }
-
-  .nav-dropdown li {
-    height: auto;
-  }
-
-  .nav-dropdown li a {
-    display: block;
-    height: auto;
-    padding: 10px 18px;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.15s, background 0.15s, padding-left 0.15s;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown li:last-child a {
-    border-bottom: none;
-  }
-
-  .nav-dropdown li a:hover {
-    color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 5%, transparent);
-    padding-left: 24px;
-  }
-
 </style>
 </head>
 <body>
@@ -1590,6 +1568,7 @@
         <li><a href="#explainer-proxy">01 — Proxy Variables</a></li>
         <li><a href="#explainer-sampling">02 — Sampling Bias</a></li>
         <li><a href="#explainer-shap">03 — SHAP Values</a></li>
+        <li><a href="#explainer-equalized-odds">04 — Equalized Odds</a></li>
       </ul>
     </li>
     <li><a href="#impact">Impact</a></li>
@@ -1620,6 +1599,7 @@
     <a href="#explainer-proxy" class="mobile-link mobile-sub">01 — Proxy Variables</a>
     <a href="#explainer-sampling" class="mobile-link mobile-sub">02 — Sampling Bias</a>
     <a href="#explainer-shap" class="mobile-link mobile-sub">03 — SHAP Values</a>
+    <a href="#explainer-equalized-odds" class="mobile-link mobile-sub">04 — Equalized Odds</a>
     <a href="#impact" class="mobile-link">Impact</a>
     <a href="#roadmap" class="mobile-link">Roadmap</a>
     <div class="mobile-social-row">
@@ -1678,6 +1658,7 @@
     <span class="ticker-item red"><span class="dot"></span>INSURANCE DENIAL BIAS</span>
     <span class="ticker-item"><span class="dot"></span>BMI + SMOKER + DIABETIC PROXIES</span>
     <span class="ticker-item"><span class="dot"></span>AGE GAP 7.93% → 3.18% · 60% REDUCTION</span>
+    <span class="ticker-item"><span class="dot"></span>EQUALIZED ODDS · TPR + FPR PARITY</span>
     <!-- dupe for infinite scroll -->
     <span class="ticker-item red"><span class="dot"></span>COMPAS CRIMINAL JUSTICE</span>
     <span class="ticker-item"><span class="dot"></span>AI HIRING DISCRIMINATION</span>
@@ -1692,6 +1673,7 @@
     <span class="ticker-item red"><span class="dot"></span>INSURANCE DENIAL BIAS</span>
     <span class="ticker-item"><span class="dot"></span>BMI + SMOKER + DIABETIC PROXIES</span>
     <span class="ticker-item"><span class="dot"></span>AGE GAP 7.93% → 3.18% · 60% REDUCTION</span>
+    <span class="ticker-item"><span class="dot"></span>EQUALIZED ODDS · TPR + FPR PARITY</span>
   </div>
 </div>
 
@@ -1942,6 +1924,7 @@
       </div>
     </div>
   </div>
+
   <!-- PROJECT 3: GERMAN CREDIT -->
   <div id="project-credit" style="position:relative; top:-80px; visibility:hidden;"></div>
   <div class="project-card reveal" style="margin-top: 2px;">
@@ -2094,6 +2077,8 @@
     </div>
   </div>
 </section>
+
+<!-- EXPLAINERS -->
 <section id="explainers" style="background: var(--surface);">
   <div class="section-eyebrow"><span class="num">04</span>Explainers</div>
   <div class="projects-header">
@@ -2101,7 +2086,7 @@
     <a href="https://github.com/yakew7/Fair-Code/tree/main/explainers" target="_blank" class="gh-badge">↗ View on GitHub</a>
   </div>
 
-  <!-- EXPLAINER: PROXY VARIABLES -->
+  <!-- EXPLAINER 01: PROXY VARIABLES -->
   <div id="explainer-proxy" style="position:relative; top:-80px; visibility:hidden;"></div>
   <div class="explainer-card reveal">
     <div class="explainer-header">
@@ -2117,7 +2102,6 @@
     </div>
 
     <div class="explainer-body">
-
       <div class="explainer-block">
         <div class="explainer-block-label">Why This Matters</div>
         <p class="explainer-block-text">Most people assume that removing race from an AI model makes it race-neutral. This is wrong. Machine learning models don't care what a feature is <em>called</em>. They care what it <em>predicts</em>. If a feature like <code class="inline-code">custody_status</code> or <code class="inline-code">zip_code</code> is correlated with race in the training data, the model will learn and use that correlation — whether or not the word "race" appears anywhere in the dataset. This is called <strong>proxy discrimination</strong>, and it's one of the hardest problems in algorithmic fairness.</p>
@@ -2263,7 +2247,6 @@
           <a href="https://science.sciencemag.org/content/366/6464/447" target="_blank" class="reading-link">↗ Obermeyer et al.: Dissecting racial bias in a health algorithm (Science, 2019)</a>
         </div>
       </div>
-
     </div>
 
     <div class="explainer-footer">
@@ -2271,12 +2254,13 @@
       <div class="coming-soon-pills">
         <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Sampling Bias</a>
         <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ SHAP Values</a>
+        <a href="#explainer-equalized-odds" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Equalized Odds</a>
         <span class="coming-pill">Demographic Parity — coming soon</span>
       </div>
     </div>
   </div>
 
-  <!-- EXPLAINER: SAMPLING BIAS -->
+  <!-- EXPLAINER 02: SAMPLING BIAS -->
   <div id="explainer-sampling" style="position:relative; top:-80px; visibility:hidden;"></div>
   <div class="explainer-card reveal" style="margin-top: 2px;">
     <div class="explainer-header">
@@ -2292,7 +2276,6 @@
     </div>
 
     <div class="explainer-body">
-
       <div class="explainer-block">
         <div class="explainer-block-label">Why This Matters</div>
         <p class="explainer-block-text">Most people assume that if you have a large dataset, the model will be fair. This is wrong. Size doesn't equal representativeness. A dataset of 10 million records is still biased if 9.8 million of them come from the same demographic. The model doesn't know what it hasn't seen — it optimises for the distribution it was trained on. When that distribution doesn't match the real world, the people left out pay the price. This is how facial recognition fails on darker skin tones, clinical tools miss diagnoses in women, and NLP models perform worse on dialects outside Standard American English.</p>
@@ -2478,7 +2461,6 @@
           <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" target="_blank" class="reading-link">↗ Bender et al.: On the Dangers of Stochastic Parrots (2021)</a>
         </div>
       </div>
-
     </div>
 
     <div class="explainer-footer">
@@ -2486,12 +2468,13 @@
       <div class="coming-soon-pills">
         <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
         <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ SHAP Values</a>
+        <a href="#explainer-equalized-odds" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Equalized Odds</a>
         <span class="coming-pill">Demographic Parity — coming soon</span>
       </div>
     </div>
   </div>
 
-  <!-- EXPLAINER: SHAP VALUES -->
+  <!-- EXPLAINER 03: SHAP VALUES -->
   <div id="explainer-shap" style="position:relative; top:-80px; visibility:hidden;"></div>
   <div class="explainer-card reveal" style="margin-top: 2px;">
     <div class="explainer-header">
@@ -2507,7 +2490,6 @@
     </div>
 
     <div class="explainer-body">
-
       <div class="explainer-block">
         <div class="explainer-block-label">Why This Matters</div>
         <p class="explainer-block-text">Most AI systems deployed in high-stakes domains — criminal justice, hiring, lending, healthcare — are black boxes. They produce a score or a decision and don't explain why. This is not just an inconvenience. It is a fairness problem. If you cannot inspect how a model arrived at a decision, you cannot detect whether a protected attribute drove the outcome, challenge a decision that affected you, or comply with regulations that require explainability. SHAP values make the black box transparent. They are grounded in cooperative game theory (Shapley values), providing a mathematically principled way to attribute credit or blame across features — consistent, locally accurate, and model-agnostic.</p>
@@ -2659,7 +2641,6 @@
           <a href="https://fairmlbook.org/" target="_blank" class="reading-link">↗ Barocas &amp; Hardt: Fairness and Machine Learning — Chapter 6</a>
         </div>
       </div>
-
     </div>
 
     <div class="explainer-footer">
@@ -2667,14 +2648,159 @@
       <div class="coming-soon-pills">
         <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
         <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
+        <a href="#explainer-equalized-odds" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↓ Equalized Odds</a>
+        <span class="coming-pill">Demographic Parity — coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLAINER 04: EQUALIZED ODDS -->
+  <div id="explainer-equalized-odds" style="position:relative; top:-80px; visibility:hidden;"></div>
+  <div class="explainer-card reveal" style="margin-top: 2px;">
+    <div class="explainer-header">
+      <div class="explainer-meta">
+        <div class="explainer-num">EXPLAINER — 04</div>
+        <h3 class="explainer-title">WHAT IS EQUALIZED ODDS?</h3>
+        <p class="explainer-tagline">The fairness metric that catches a model treating two groups differently — even when overall accuracy looks fine.</p>
+      </div>
+      <div class="explainer-definition">
+        <div class="explainer-def-label">One-Sentence Definition</div>
+        <p class="explainer-def-text">Equalized Odds requires a model to make equally accurate decisions for every demographic group — meaning its true positive rate <em>and</em> false positive rate must be the same across protected groups like race, gender, or age.</p>
+      </div>
+    </div>
+
+    <div class="explainer-body">
+      <div class="explainer-block">
+        <div class="explainer-block-label">Why This Matters</div>
+        <p class="explainer-block-text">Most people check model accuracy and call it done. This misses the problem entirely. A model can be 90% accurate overall while still making systematically different <em>types</em> of mistakes for different groups. It might correctly identify qualified candidates in one group at 91%, while only correctly identifying them in another group at 69%. Same model. Same task. Different outcomes — depending on who you are.</p>
+        <p class="explainer-block-text" style="margin-top: 14px;">This matters because the two types of errors a model makes are not morally equivalent. False negatives — missing someone who should have been flagged — can mean a qualified person is rejected, a sick patient goes undiagnosed, or a creditworthy borrower is denied a loan. False positives — flagging someone who shouldn't have been — can mean an innocent person is detained, or a healthy patient is over-treated. If those errors fall unevenly across demographic groups, the model is discriminating, regardless of what its accuracy score says.</p>
+      </div>
+
+      <div class="explainer-proof">
+        <div class="explainer-block-label" style="margin-bottom: 24px;">Real-World Proof: COMPAS Analysis</div>
+        <p class="explainer-block-text" style="margin-bottom: 20px;">COMPAS doesn't just need to be accurate — it needs to be <em>equally</em> accurate for every defendant, regardless of race. Measuring Equalized Odds reveals what aggregate accuracy hides.</p>
+        <div class="proxy-table">
+          <div class="proxy-row proxy-row-head">
+            <span>Group</span>
+            <span>True Positive Rate</span>
+            <span>False Positive Rate</span>
+          </div>
+          <div class="proxy-row">
+            <span style="color: var(--text);">Black Defendants</span>
+            <span style="color: var(--accent2);">0.89</span>
+            <span style="color: var(--accent2);">0.31 ← flagged when innocent</span>
+          </div>
+          <div class="proxy-row">
+            <span style="color: var(--text);">White Defendants</span>
+            <span style="color: var(--muted);">0.67</span>
+            <span style="color: var(--accent3);">0.11</span>
+          </div>
+          <div class="proxy-row">
+            <span style="color: var(--white); font-weight: 500;">Gap</span>
+            <span style="color: var(--accent2); font-weight: 500;">0.22</span>
+            <span style="color: var(--accent2); font-weight: 500;">0.20 — nearly 3× the rate</span>
+          </div>
+        </div>
+        <div class="explainer-callout" style="margin-top: 16px;">Black defendants who won't reoffend are falsely flagged as high-risk at nearly three times the rate of white defendants. Aggregate accuracy tells you none of this. Equalized Odds does.</div>
+      </div>
+
+      <div class="explainer-detection">
+        <div class="explainer-block-label">How to Detect It in Python</div>
+        <div class="code-block" style="margin-top: 16px;">
+          <div class="code-block-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            equalized_odds_audit.py
+          </div>
+          <div class="code-block-body" style="font-size: 11px;">
+            <span class="c">from</span> <span class="v">fairlearn.metrics</span> <span class="c">import</span> <span class="v">MetricFrame, true_positive_rate, false_positive_rate</span><br><br>
+            metrics = {<br>
+            &nbsp;&nbsp;<span class="v">"TPR"</span>: true_positive_rate,<br>
+            &nbsp;&nbsp;<span class="v">"FPR"</span>: false_positive_rate<br>
+            }<br><br>
+            frame = MetricFrame(<br>
+            &nbsp;&nbsp;metrics=metrics,<br>
+            &nbsp;&nbsp;y_true=y_true,<br>
+            &nbsp;&nbsp;y_pred=y_pred,<br>
+            &nbsp;&nbsp;sensitive_features=groups  <span class="c"># e.g. race, gender</span><br>
+            )<br><br>
+            print(frame.by_group)<br>
+            print(frame.difference())  <span class="c"># gap between groups</span><br><br>
+            <span class="c"># Large differences in TPR or FPR = violation</span><br>
+            <span class="c"># Run on every protected attribute before deployment</span><br>
+            <span class="c"># pip install fairlearn</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-block">
+        <div class="explainer-block-label">The Math</div>
+        <p class="explainer-block-text">Two conditions must hold simultaneously. Equal True Positive Rate: P(Ŷ=1 | Y=1, A=a) = P(Ŷ=1 | Y=1, A=b). And Equal False Positive Rate: P(Ŷ=1 | Y=0, A=a) = P(Ŷ=1 | Y=0, A=b). Where Ŷ is the model prediction, Y is the true label, and A is the protected attribute. A model that satisfies one condition but not the other still violates Equalized Odds.</p>
+      </div>
+
+      <div class="proxy-table-wrap">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Related Fairness Metrics</div>
+        <div class="proxy-table">
+          <div class="proxy-row proxy-row-head">
+            <span>Metric</span>
+            <span>What It Requires</span>
+            <span>Trade-off</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Equalized Odds</code></span>
+            <span class="proxy-attr">Equal TPR + equal FPR across groups</span>
+            <span>May reduce overall accuracy; conflicts with calibration when base rates differ</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Equal Opportunity</code></span>
+            <span class="proxy-attr">Equal TPR only</span>
+            <span>Relaxed version — lets FPR disparities go unchecked</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Demographic Parity</code></span>
+            <span class="proxy-attr">Equal positive prediction rates regardless of ground truth</span>
+            <span>Doesn't account for correctness; conflicts with Equalized Odds when base rates differ</span>
+          </div>
+          <div class="proxy-row">
+            <span><code class="inline-code">Calibration</code></span>
+            <span class="proxy-attr">Consistent probability scores across groups</span>
+            <span>Mathematically proven to conflict with Equalized Odds unless base rates are equal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-takeaway">
+        <div class="explainer-block-label">The Bigger Picture</div>
+        <p class="explainer-block-text">Equalized Odds violations exist because our models are trained on data generated by unequal systems. A criminal justice dataset carries decades of over-policing. A hiring dataset carries decades of gender and racial exclusion. A healthcare dataset carries the structural inequalities of the American insurance system. A model trained on that data learns those inequalities — and unless you actively measure both types of errors across every protected group, the bias remains hidden behind an accuracy score that looks fine.</p>
+        <p class="explainer-block-text" style="margin-top: 14px;">Equalized Odds is not a cure. Removing protected attributes and proxy variables cures the bias. What Equalized Odds does is make the unequal error rates visible before deployment — so you have something concrete to fix.</p>
+        <div class="explainer-callout">Equalized Odds is not a cure. It is a diagnostic. Run it before you deploy.</div>
+      </div>
+
+      <div class="explainer-reading">
+        <div class="explainer-block-label" style="margin-bottom: 16px;">Further Reading</div>
+        <div class="reading-links">
+          <a href="https://arxiv.org/abs/1610.02413" target="_blank" class="reading-link">↗ Hardt, Price, Srebro: Equality of Opportunity in Supervised Learning (2016)</a>
+          <a href="https://arxiv.org/abs/1703.00056" target="_blank" class="reading-link">↗ Chouldechova: Fair Prediction with Disparate Impact — the calibration conflict proof (2017)</a>
+          <a href="https://fairlearn.org/v0.8/user_guide/fairness_in_machine_learning.html" target="_blank" class="reading-link">↗ Fairlearn: Fairness in Machine Learning</a>
+          <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing" target="_blank" class="reading-link">↗ ProPublica: Machine Bias (2016)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="explainer-footer">
+      <div class="explainer-footer-label">Also in this series</div>
+      <div class="coming-soon-pills">
+        <a href="#explainer-proxy" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Proxy Variables</a>
+        <a href="#explainer-sampling" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ Sampling Bias</a>
+        <a href="#explainer-shap" class="coming-pill" style="text-decoration:none; cursor:crosshair;">↑ SHAP Values</a>
         <span class="coming-pill">Demographic Parity — coming soon</span>
         <span class="coming-pill">Why Fairness Metrics Conflict — coming soon</span>
       </div>
     </div>
   </div>
 
-</div>
 </section>
+
+<!-- IMPACT -->
 <section id="impact" style="background: var(--surface);">
   <div class="section-eyebrow"><span class="num">05</span>Why This Matters</div>
   <h2 class="impact-title reveal">THESE ARE NOT HYPOTHETICALS</h2>
@@ -2752,6 +2878,13 @@
       </div>
     </div>
     <div class="roadmap-item">
+      <div class="roadmap-status done"></div>
+      <div>
+        <div class="roadmap-name">Explainer: Equalized Odds</div>
+        <div class="roadmap-meta">TPR + FPR parity · COMPAS proof · calibration conflict · fairlearn detection code</div>
+      </div>
+    </div>
+    <div class="roadmap-item">
       <div class="roadmap-status soon"></div>
       <div>
         <div class="roadmap-name">Facial Recognition Gaps</div>
@@ -2796,7 +2929,6 @@
     hamburger.classList.toggle('open');
     mobileNav.classList.toggle('open');
   });
-  // Close drawer when a link is tapped
   mobileNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
