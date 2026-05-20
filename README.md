@@ -73,7 +73,8 @@ Fair-Code/
 │   ├── equalized-odds.md          # What is equalized odds? (concept + detection code)
 │   ├── sampling-bias.md           # What is sampling bias? (concept + simulation + mitigation)
 │   ├── shap-values.md             # What are SHAP values? (explainability + bias auditing)
-│   └── disparate-impact.md        # What is disparate impact? (the 80% rule + legal threshold)
+│   ├── disparate-impact.md        # What is disparate impact? (the 80% rule + legal threshold)
+│   └── fairness-metric-conflicts.md  # Why fairness metrics conflict (impossibility proof + COMPAS case)
 │
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -272,8 +273,8 @@ Dropped `age`, `gender`, `bmi`, `smoker`, and `diabetic`. Retained only objectiv
 | [What is Sampling Bias?](explainers/sampling-bias.md) | Why your AI works great in the lab and fails on the people who need it most |
 | [What Are SHAP Values?](explainers/shap-values.md) | How to see exactly what drove an AI decision — and use that to catch bias |
 | [What is Disparate Impact (The 80% Rule)?](explainers/disparate-impact.md) | The legal threshold under US employment law that flags an AI hiring or lending decision as discriminatory |
+| [Why Fairness Metrics Conflict](explainers/fairness-metric-conflicts.md) | The proven mathematical impossibility of satisfying demographic parity, equalized odds, and predictive parity at the same time |
 | Coming soon | What is demographic parity? |
-| Coming soon | Why fairness metrics conflict with each other |
 
 ---
 
@@ -369,6 +370,7 @@ python fair.py
 - [x] Explainer: Sampling Bias
 - [x] Explainer: SHAP Values
 - [x] Explainer: Disparate Impact (The 80% Rule)
+- [x] Explainer: Why Fairness Metrics Conflict
 - [ ] Facial recognition accuracy gaps (MIT Gender Shades methodology)
 - [ ] HMDA mortgage lending bias
 - [ ] LLM bias audit
