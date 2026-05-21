@@ -80,6 +80,7 @@ Fair-Code/
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
+├── SECURITY.md
 ├── index.html                     # Project website (also live at fair-code-five.vercel.app)
 └── requirements.txt
 ```
