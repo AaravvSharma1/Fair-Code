@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this project in your research, please cite it as below."
+type: software
+title: "Fair Code — Algorithmic Bias Detection & Mitigation"
+abstract: "An open-source research project that exposes and fixes bias in
+  real-world AI systems across criminal justice, hiring, lending, and
+  healthcare. Each audit trains a biased model, measures the fairness gap,
+  removes protected attributes and proxy variables, and proves the reduction
+  with reproducible code and public datasets."
+authors:
+  - family-names: Kewlani
+    given-names: Yash
+    alias: yakew7
+    website: "https://github.com/yakew7"
+repository-code: "https://github.com/yakew7/Fair-Code"
+url: "https://fair-code-five.vercel.app"
+license: MIT
+version: "1.0.0"
+date-released: "2026-01-01"
+keywords:
+  - algorithmic-fairness
+  - bias-detection
+  - machine-learning
+  - ai-ethics
+  - proxy-variables
+  - demographic-parity
+  - compas
+  - python
