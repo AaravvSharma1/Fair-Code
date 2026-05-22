@@ -30,7 +30,7 @@ from sklearn.metrics import accuracy_score
 #                   Occupation encodes race via labour market bias.
 # ============================================================
 
-df = pd.read_csv('adult.csv')
+df = pd.read_csv('Benefits Denial/adult.csv')
 
 # Target: 1 = income >50K (above means-test threshold → likely ineligible)
 #         0 = income <=50K (below threshold → eligible for benefits)

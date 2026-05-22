@@ -28,7 +28,7 @@ from sklearn.metrics import accuracy_score
 #   capital.loss     signals that directly affect means tests
 # ============================================================
 
-df = pd.read_csv('adult.csv')
+df = pd.read_csv('Benefits Denial/adult.csv')
 
 df['target']    = (df['income'] == '>50K').astype(int)
 df['is_female'] = (df['sex'] == 'Female').astype(int)
