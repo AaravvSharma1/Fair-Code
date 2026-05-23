@@ -397,6 +397,7 @@ features = [
 | [What Are SHAP Values?](explainers/shap-values.md) | How to see exactly what drove an AI decision — and use that to catch bias |
 | [What is Disparate Impact (The 80% Rule)?](explainers/disparate-impact.md) | The legal threshold under US employment law that flags an AI hiring or lending decision as discriminatory |
 | [Why Fairness Metrics Conflict](explainers/fairness-metric-conflicts.md) | The proven mathematical impossibility of satisfying demographic parity, equalized odds, and predictive parity at the same time |
+| [What is Calibration?](explainers/calibration.md) | Why a model can be equally accurate for everyone and still treat them unequally — and how differential calibration played out in COMPAS |
 | Coming soon | What is demographic parity? |
 
 ---
@@ -522,6 +523,7 @@ Or open any `.ipynb` file directly in VS Code, JupyterLab, or Google Colab.
 - [x] Explainer: SHAP Values
 - [x] Explainer: Disparate Impact (The 80% Rule)
 - [x] Explainer: Why Fairness Metrics Conflict
+- [x] Explainer: Calibration
 - [ ] Facial recognition accuracy gaps (MIT Gender Shades methodology)
 - [ ] HMDA mortgage lending bias
 - [ ] LLM bias audit
@@ -538,7 +540,7 @@ The full project is published as an interactive website at **[fair-code-five.ver
 It includes everything in this repo — presented visually:
 
 - **All five bias audits** with before/after terminal outputs, bias bar charts, and key insights
-- **All five explainers** — Proxy Variables, Sampling Bias, SHAP Values, Equalized Odds, and Disparate Impact — with real-world proof, detection code, and further reading
+- **All five explainers** — Proxy Variables, Sampling Bias, SHAP Values, Equalized Odds, Disparate Impact, and Calibration — with real-world proof, detection code, and further reading
 - **Search and filter** across all audits and explainers
 - **Copy buttons** on every code block and terminal output
 - **Share buttons** per audit — links directly to each experiment
