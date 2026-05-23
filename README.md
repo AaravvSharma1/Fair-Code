@@ -95,7 +95,8 @@ Fair-Code/
 │   ├── sampling-bias.md           # What is sampling bias? (concept + simulation + mitigation)
 │   ├── shap-values.md             # What are SHAP values? (explainability + bias auditing)
 │   ├── disparate-impact.md        # What is disparate impact? (the 80% rule + legal threshold)
-│   └── fairness-metric-conflicts.md  # Why fairness metrics conflict (impossibility proof + COMPAS case)
+│   ├── fairness-metric-conflicts.md  # Why fairness metrics conflict (impossibility proof + COMPAS case)
+│   └── calibration.md             # What is calibration? (differential calibration + COMPAS case)
 │
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
