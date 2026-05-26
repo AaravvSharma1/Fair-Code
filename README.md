@@ -98,14 +98,14 @@ Fair-Code/
 │   └── 05_benefits_denial_bias_audit.ipynb  # Full walkthrough: Benefits denial welfare bias
 │
 ├── explainers/
-│   ├── proxy-variables.md         # What is a proxy variable? (concept + detection code)
-│   ├── equalized-odds.md          # What is equalized odds? (concept + detection code)
-│   ├── sampling-bias.md           # What is sampling bias? (concept + simulation + mitigation)
-│   ├── shap-values.md             # What are SHAP values? (explainability + bias auditing)
-│   ├── disparate-impact.md        # What is disparate impact? (the 80% rule + legal threshold)
+│   ├── proxy-variables.md            # What is a proxy variable? (concept + detection code)
+│   ├── equalized-odds.md             # What is equalized odds? (concept + detection code)
+│   ├── sampling-bias.md              # What is sampling bias? (concept + simulation + mitigation)
+│   ├── shap-values.md                # What are SHAP values? (explainability + bias auditing)
+│   ├── disparate-impact.md           # What is disparate impact? (the 80% rule + legal threshold)
 │   ├── fairness-metric-conflicts.md  # Why fairness metrics conflict (impossibility proof + COMPAS case)
-│   ├── calibration.md             # What is calibration? (differential calibration + COMPAS case)
-│   └── demographic-parity.md      # What is demographic parity? (the 80% rule baseline + detection code)
+│   ├── calibration.md                # What is calibration? (differential calibration + COMPAS case)
+│   └── demographic-parity.md         # What is demographic parity? (the 80% rule baseline + detection code)
 │
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -113,7 +113,7 @@ Fair-Code/
 ├── README.md
 ├── SECURITY.md
 ├── CITATION.cff
-├── index.html                     # Project website (also live at fair-code-five.vercel.app)
+├── index.html                        # Project website (also live at fair-code-five.vercel.app)
 └── requirements.txt
 ```
 
