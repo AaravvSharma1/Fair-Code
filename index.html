@@ -2221,6 +2221,7 @@
       <button class="search-filter-btn" data-filter-group="projects" data-filter="hiring" aria-label="Filter by Hiring" aria-pressed="false">Hiring</button>
       <button class="search-filter-btn" data-filter-group="projects" data-filter="lending" aria-label="Filter by Lending" aria-pressed="false">Lending</button>
       <button class="search-filter-btn" data-filter-group="projects" data-filter="healthcare" aria-label="Filter by Healthcare" aria-pressed="false">Healthcare</button>
+      <button class="search-filter-btn" data-filter-group="projects" data-filter="welfare" aria-label="Filter by Welfare" aria-pressed="false">Welfare</button>
       <span class="search-count" id="projects-count"><span id="projects-count-num">—</span> of <span id="projects-total-num">—</span></span>
     </div>
   </div>
@@ -2530,10 +2531,8 @@
       </div>
     </div>
   </div>
-</section>
 
-<!-- BENEFITS DENIAL -->
-<section id="projects" aria-labelledby="projects-heading-benefits" style="padding-top: 0;">
+  <!-- PROJECT 5: BENEFITS DENIAL -->
   <div id="project-benefits" style="position:relative; top:-80px; visibility:hidden;"></div>
   <div class="project-card reveal" style="margin-top: 2px;" data-project-tags="welfare benefits" data-project-text="benefits denial welfare eligibility bias sex race age national origin relationship marital status hours per week occupation proxies UCI adult census income 53% 46% 88% 18% 8.52% ineligibility means test">
     <div class="card-bg-num">05</div>
@@ -4683,6 +4682,10 @@
     'project-insurance': {
       title: 'Insurance Denial Healthcare Bias Audit',
       desc: 'Age fairness gap 7.93% → 3.18% (60% reduction). Gender gap 72% reduction. BMI/smoker proxies identified.',
+    },
+    'project-benefits': {
+      title: 'Benefits Denial Welfare Bias Audit',
+      desc: 'Male applicants flagged ineligible 18pts higher than women. 53% sex gap reduction, 46% race, 88% national-origin.',
     },
   };
 
