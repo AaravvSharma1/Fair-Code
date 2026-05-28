@@ -59,6 +59,7 @@ Fair-Code/
 │   ├── fairness-metric-conflicts.md ← existing
 │   ├── calibration.md               ← existing
 │   ├── demographic-parity.md        ← existing
+│   ├── feedback-loop-bias.md        ← existing
 │   └── your-concept-name.md         ← your new explainer
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -242,6 +243,7 @@ Explainers live in the `explainers/` folder at the repo root. The existing ones 
 - `fairness-metric-conflicts.md` — the proven mathematical impossibility of satisfying demographic parity, equalized odds, and predictive parity simultaneously
 - `calibration.md` — why a model can be equally accurate for all groups and still treat them unequally, including differential calibration and the Chouldechova impossibility result
 - `demographic-parity.md` — the foundational fairness metric: equal positive prediction rates across groups, when it applies, and what it misses
+- `feedback-loop-bias.md` — why AI systems amplify bias across retraining cycles by treating their own predictions as ground truth, and how to detect and break the loop
 
 Future ones might cover predictive parity.
 
@@ -358,7 +360,7 @@ In the PR description, include:
 - Explainers that only define a concept without demonstrating it with real data or code
 - Explainers that don't acknowledge the limitations or trade-offs of the metric/concept
 - Toy or invented examples as the primary illustration — use real data
-- Explainers on concepts already covered in the folder (check before starting — proxy variables, equalized odds, sampling bias, SHAP values, disparate impact, fairness metric conflicts, calibration, and demographic parity are done)
+- Explainers on concepts already covered in the folder (check before starting — proxy variables, equalized odds, sampling bias, SHAP values, disparate impact, fairness metric conflicts, calibration, demographic parity, and feedback loop bias are done)
 
 ---
 
