@@ -117,7 +117,8 @@ Fair-Code/
 │   ├── disparate-impact.md           # What is disparate impact? (the 80% rule + legal threshold)
 │   ├── fairness-metric-conflicts.md  # Why fairness metrics conflict (impossibility proof + COMPAS case)
 │   ├── calibration.md                # What is calibration? (differential calibration + COMPAS case)
-│   └── demographic-parity.md         # What is demographic parity? (the 80% rule baseline + detection code)
+│   ├── demographic-parity.md         # What is demographic parity? (the 80% rule baseline + detection code)
+│   └── feedback-loop-bias.md         # What is feedback loop bias? (compounding bias across retraining cycles + simulation code)
 │
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
@@ -421,6 +422,7 @@ features = [
 | [Why Fairness Metrics Conflict](explainers/fairness-metric-conflicts.md) | The proven mathematical impossibility of satisfying demographic parity, equalized odds, and predictive parity at the same time |
 | [What is Calibration?](explainers/calibration.md) | Why a model can be equally accurate for everyone and still treat them unequally — and how differential calibration played out in COMPAS |
 | [What is Demographic Parity?](explainers/demographic-parity.md) | The foundational fairness metric that requires equal positive prediction rates across groups — what it catches, what it misses, and when to use it |
+| [What is Feedback Loop Bias?](explainers/feedback-loop-bias.md) | Why AI systems don't just reflect historical bias — they actively amplify it across retraining cycles, and how to detect and break the loop |
 
 ---
 
@@ -547,6 +549,7 @@ Or open any `.ipynb` file directly in VS Code, JupyterLab, or Google Colab.
 - [x] Explainer: Why Fairness Metrics Conflict
 - [x] Explainer: Calibration
 - [x] Explainer: Demographic Parity
+- [x] Explainer: Feedback Loop Bias
 - [ ] Facial recognition accuracy gaps (MIT Gender Shades methodology)
 - [ ] HMDA mortgage lending bias
 - [ ] LLM bias audit
@@ -563,7 +566,7 @@ The full project is published as an interactive website at **[fair-code-five.ver
 It includes everything in this repo — presented visually:
 
 - **All five bias audits** with before/after terminal outputs, bias bar charts, and key insights
-- **All five explainers** — Proxy Variables, Sampling Bias, SHAP Values, Equalized Odds, Disparate Impact, Calibration, Fairness Metric Conflicts, and Demographic Parity — with real-world proof, detection code, and further reading
+- **All five explainers** — Proxy Variables, Sampling Bias, SHAP Values, Equalized Odds, Disparate Impact, Calibration, Fairness Metric Conflicts, Demographic Parity, and Feedback Loop Bias — with real-world proof, detection code, and further reading
 - **Search and filter** across all audits and explainers
 - **Copy buttons** on every code block and terminal output
 - **Share buttons** per audit — links directly to each experiment
